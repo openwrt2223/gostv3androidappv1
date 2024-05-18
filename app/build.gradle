@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId "run.gost.gost"
         minSdk 21
+        //noinspection ExpiredTargetSdkVersion
         targetSdk 28
         versionCode 1
         versionName "1.0"
