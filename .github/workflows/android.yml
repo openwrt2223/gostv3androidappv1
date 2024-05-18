@@ -55,6 +55,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
       with:
+        tag_name: v1
         files: ${{ steps.sign_app.outputs.signedReleaseFile }}
         generate_release_notes: true
 
