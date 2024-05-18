@@ -24,8 +24,16 @@ jobs:
       with:
         gradle-version: current
         arguments: assembleRelease
+
+    # https://github.com/r0adkll/sign-android-release/issues/84#issuecomment-1889636075
+    - name: Setup Build Tool Version Variable
+      shell: bash
+      run: |
+        BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+        echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+        echo Last Build Tool Version Is: $BUILD_TOOL_VERSION
     - uses: r0adkll/sign-android-release@v1
-      name: Sign app APK
+      name: Sign App APK
       id: sign_app
       with:
         releaseDirectory: app/build/outputs/apk/release
@@ -33,9 +41,12 @@ jobs:
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
         keyPassword: ${{ secrets.KEY_PASSWORD }}
+      env:
+        BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
+
     - uses: actions/upload-artifact@v4
-      name: Upload signed app APK
+      name: Upload Signed App APK
       with:
-        name: Signed app bundle
+        name: Signed App Bundle
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
