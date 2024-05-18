@@ -52,8 +52,6 @@ jobs:
 
     - name: Upload Gost App To Release
       uses: softprops/action-gh-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
       with:
         tag_name: v1
         files: ${{ steps.sign_app.outputs.signedReleaseFile }}
@@ -70,6 +68,4 @@ jobs:
       with:
         keep_latest: 1
         delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
