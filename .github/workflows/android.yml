@@ -55,14 +55,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
       with:
-        tag_name: v1
         files: ${{ steps.sign_app.outputs.signedReleaseFile }}
         generate_release_notes: true
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
-        retain_days: ${{ github.event.inputs.days }}
+        retain_days: 1
         keep_minimum_runs: 1
 
     - name: Remove Old Releases
