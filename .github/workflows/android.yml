@@ -55,7 +55,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
       with:
-        files: ${{ steps.sign_app.outputs.signedReleaseFile }}/*
+        tag_name: v1
+        files: ${{ steps.sign_app.outputs.signedReleaseFile }}
         generateReleaseNotes: true
 
     - name: Delete workflow runs
