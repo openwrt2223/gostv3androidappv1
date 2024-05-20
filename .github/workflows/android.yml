@@ -23,7 +23,6 @@ jobs:
     - uses: gradle/actions/setup-gradle@v3
       with:
         gradle-version: current
-        arguments: assembleRelease
 
     # https://github.com/r0adkll/sign-android-release/issues/84#issuecomment-1889636075
     - name: Setup Build Tool Version Variable
@@ -60,7 +59,7 @@ jobs:
         generate_release_notes: true
 
     - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
+      uses: Mattraks/delete-workflow-runs@v2
       with:
         retain_days: 1
         keep_minimum_runs: 1
