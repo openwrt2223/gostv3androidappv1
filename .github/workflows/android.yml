@@ -23,6 +23,12 @@ jobs:
     - uses: gradle/actions/setup-gradle@v3
       with:
         gradle-version: current
+        build-scan-publish: true
+        build-scan-terms-of-use-url: "https://gradle.com/help/legal-terms-of-use"
+        build-scan-terms-of-use-agree: "yes"
+
+    - name: AssembleRelease The Project
+      run: ./gradlew assembleRelease
 
     # https://github.com/r0adkll/sign-android-release/issues/84#issuecomment-1889636075
     - name: Setup Build Tool Version Variable
